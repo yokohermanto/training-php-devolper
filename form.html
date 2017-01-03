@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Biodata</title>
+</head>
+<body>
+<form action="formaksi.php" method="get">
+	<table style="line-height:25px;">
+		<p>BIODATA</p>
+		<tr>
+			<td>Nama</td>
+			<td>:</td>
+			<td><input type="text" name="nama" placeholder="isikan nama"></td>
+		</tr>
+		<tr>
+			<td>Tempat</td>
+			<td>:</td>
+			<td><input type="text" name="Tempat" placeholder="tempat lahir"></td>
+		</tr>
+		<tr>
+			<td>tanggal_lahir</td>
+			<td>:</td>
+			<td><input type="date" name="tanggal_lahir" value="TL"></td>
+		</tr>
+		<tr>
+			<td>jenis_kelamin</td>
+			<td>:</td>
+			<td>
+				<input type="radio" name="JK" value="laki-laki">laki-laki
+				<input type="radio" name="JK" value="perempuan">perempuan
+			</td>
+		</tr>
+		<tr>
+			<td>golongan_darah</td>
+			<td>:</td>
+			<td>
+				<input type="radio" name="golongan_darah" value="A">A
+				<input type="radio" name="golongan_darah" value="B">B
+				<input type="radio" name="golongan_darah" value="AB">AB
+				<input type="radio" name="golongan_darah" value="O">O
+			</td>	
+		</tr>
+		<tr>
+			<td>Alamat</td>
+			<td>:</td>
+			<td><textarea name="alamat"></textarea></td>
+		</tr>
+		<tr>
+			<td>Foto</td>
+			<td>:</td>
+			<td><input type="file" name="file_gambar" onchange="previewFile()">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>
+				<img src="" height="70px" alt="image preview">
+				<script type="text/javascript">
+					function previewFile() {
+						var preview = document.querySelector('img');
+						var file    = document.querySelector('input[type=file]').files[0];
+						var reader  = new FileReader();
+						reader.addEventListener("load", function () {
+					preview.src = reader.result;
+					}, false);
+						if (file) {
+						reader.readAsDataURL(file);
+						}
+						}
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<td>Agama</td>
+			<td>:</td>
+			<td>
+				<select name="agama">
+					<option value="islam">islam</option>
+					<option value="katolik">katolik</option>
+					<option value="protestan">protestan</option>
+					<option value="hindu">hindu</option>
+					<option value="budha">budha</option>
+					<option value="konghucu">konghucu</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Status perkawinan</td>
+			<td>:</td>
+			<td>
+				<input type="radio" name="Status" value="belum_kawin">belum kawin
+				<input type="radio" name="Status" value="kawin">kawin
+			</td>
+		</tr>
+		<tr>
+			<td>pekerjaan</td>
+			<td>:</td>
+			<td>
+				<select name="pekerjaan">
+					<option value="PNS">PNS</option>
+					<option value="SWASTA">SWASTA</option>
+					<option value="WIRAUSAHA">WIRAUSAHA</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>kewarga negaraan</td>
+			<td>:</td>
+			<td>
+				<input type="radio" name="kewarga" value="WNI">WNI
+				<input type="radio" name="kewarga" value="WNA">WNA
+			</td>
+		</tr>
+		<tr>
+			<td>hobby</td>
+			<td>:</td>
+			<td>
+				<input type="checkbox" name="hobi1" value="football">football
+				<input type="checkbox" name="hobi2" value="fishing">fishing
+				<input type="checkbox" name="hobi3" value="reading">reading
+			</td>
+		</tr>
+	</table>
+	<input type="submit" name="proses" value="submit">
+</form>
+</body>
+</html>
