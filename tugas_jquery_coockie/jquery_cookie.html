@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cookie</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+<header>FORM PEMESANAN</header>
+<div id="all">
+	<p id="notif"></p>
+	<div class="col-md-12 border border-" id="tombol">
+	<button id="add" class="btn btn-warning"> Add </button> 
+	<button id="save" class="btn btn-success"> Save </button> 
+	</div>
+	<div class="col-md-6">
+	pesan :	<select id="menu" class="form-control">
+				<option value="Nasi Goreng" harga='12000'>Nasi Goreng</option>
+				<option value="Nasi Kuning" harga='8000'>Nasi Kuning</option>
+				<option value="Nasi Kebuli" harga='10000'>Nasi Kebuli</option>
+				<option value="Mie Rebus" harga='7000'>Mie Rebus</option>
+				<option value="Bakso PSP" harga='5000'>Bakso PSP</option>
+				<option value="Es Teh" harga='3000'>Es Teh</option>
+				<option value="Tebs" harga='5000'>Tebs</option>
+				<option value="Jeruk Kecil" harga='4000'>Jeruk Kecil</option>
+			</select>
+	</div>
+	<div class="col-md-6" >
+		<p>quantyti : <input type="number" id="qty" class="form-control" placeholder="QTY">
+		</p><br>
+		<p>nomor meja : <input type="number" id="meja" class="form-control" placeholder="Meja"></p><br>
+	</div>
+
+	<table id="tabel1">
+		<tr>
+			<td colspan="3">Daftar Pesanan</td>
+		</tr>
+		<tr>
+			<td>Nomor Meja</td>
+			<td>:</td>
+			<td id="vmeja"></td>
+		</tr>
+	</table>
+	<p id="list"></p>
+</div>
+
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="jquery.cookie.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
+<!-- <script type="text/javascript" src="js.cookie.js"></script> -->
+<!-- <script type="text/javascript">
+	$(function() {
+		$("#btn").click(function() {
+			var nama = $("#nama").val();
+			$.cookie('nama', nama, { expires: 7 });
+		});
+
+		$("#btn_baca").click(function() {
+			// var kukis = $.cookie('nama');
+			document.write('tes');
+		});
+
+	});
+</script> -->
+	<script type="text/javascript">
+		var notif = $('#notif');
+
+		if($.cookie('meja') != undefined)
+		{
+			read();
+			$('#vmeja').html($.cookie("meja"));
+		}
+
+
+		$("#add").click(function() {
+			var menu = $('#menu').val();
+			var harga = $('option:selected').attr('harga');
+			var qty = $('#qty').val();
+			var total = parseInt(qty)*parseInt(harga);
+
+			$.cookie("meja", meja, { expires : 10 });
+		    $.cookie("menu", menu, { expires : 10 });
+		    $.cookie("harga", harga, { expires : 10 });
+		    $.cookie("qty", qty, { expires : 10 });
+		    $.cookie("total", total, { expires : 10 });
+		    read();
+
+		});
+
+		$("#save").click(function() {
+			var meja = $('#meja').val();
+			var menu = $('#menu').val();
+			var harga = $('option:selected').attr('harga');
+			var qty = $('#qty').val();
+			var total = parseInt(qty)*parseInt(harga);
+
+			if(meja == null || meja == '')
+			{
+				notif.html('meja masih kosong !');
+			}
+			else
+			{
+				$.cookie("meja", meja, { expires : 10 });
+				notif.html("<p class='alert alert-warning'>Success !, Berhasil menyimpan data pemesanan.</p>");
+				read();
+				$('#vmeja').html($.cookie("meja"));
+			}
+		});
+
+		function read()
+		{
+			var list = $('#list');
+			var read_menu = $.cookie("menu");
+			var read_harga = $.cookie("harga");
+			var read_qty = $.cookie("qty");
+			var read_total = $.cookie("total");
+
+			list.html("<table class='table table-contextual' id=append><thead class='table table-bordered'><tr id=head><th>Pesanan</th><th>Harga</th><th>Qty</th><th>Total</th><th>Aksi</th></tr></thead><tbody id=jay></tbody></table>");
+			$("#jay").prepend("<tr><td>"+read_menu+"</td><td>"+read_harga+"</td><td>"+read_qty+"</td><td>"+read_total+"</td><td><button type='button' id='remove' class='btn btn-warning' onclick='remove()'>Hapus</btn></td></tr>");
+
+		};
+
+		function remove()
+		{
+			$.removeCookie('meja');
+			$.removeCookie('menu');
+			$.removeCookie('harga');
+			$.removeCookie('qty');
+			$.removeCookie('total');
+
+			$('table#append').remove();
+			var list = $('#list');
+			notif.html("<p class='alert alert-warning'>Success !, Berhasil menghapus data pemesanan.</p>");
+
+			setTimeout(function() {
+				window.location = "http://localhost/folder_belajar/jcookie/jquery_cookie.html";
+			}, 2000);
+		};
+	</script>
+</body>
+</html>

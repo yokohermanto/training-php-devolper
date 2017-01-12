@@ -1,0 +1,37 @@
+body {
+	padding: 50px;
+	margin: 90px;
+	background: url(images2.JPG);	
+	margin-top: -10px;	 
+}
+
+header {
+	font-family: serif;
+	font-size:20pt;
+	height: 30px;
+	background-color: orange;
+	margin: 2px;
+	border-radius: 2px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 20px;
+	margin-top: 5px;
+}
+
+#all{
+	border: 2px solid darkgray;
+	border-radius: 10px;
+	background-color: white;
+	margin-top: 5px;
+}
+
+#tabel1 {
+	padding: 50px;
+	margin: 10px;
+	width: 100px;
+}
+
+#tombol {
+	padding: 20px;
+}
+
